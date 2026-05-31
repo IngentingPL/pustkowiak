@@ -365,15 +365,59 @@
     justify-content: space-between;
   }
 
-  /* Desktop styles */
-  @media (min-width: 900px) {
+  /* Tablet styles (601px–1024px) */
+  @media (min-width: 601px) and (max-width: 1024px) {
     .pipboy {
-      max-width: 960px;
+      max-width: 860px;
+    }
+
+    .resource-grid {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 
     nav button {
       font-size: 1.2rem;
-      padding: 12px 8px;
+    }
+  }
+
+  /* Desktop and ultrawide (1025px+) */
+  @media (min-width: 1025px) {
+    .pipboy {
+      max-width: 1400px;
+      width: 95vw;
+    }
+
+    .pipboy-body {
+      display: flex;
+    }
+
+    .pipboy-nav {
+      width: 200px;
+      flex-shrink: 0;
+      border-right: 2px solid var(--green-dim);
+      border-bottom: none;
+    }
+
+    .pipboy-nav nav {
+      flex-direction: column;
+      border-bottom: none;
+      border-right: none;
+    }
+
+    .pipboy-nav nav button {
+      border-right: none;
+      border-bottom: 1px solid var(--green-dim);
+      text-align: left;
+      padding: 14px 20px;
+      flex: none;
+    }
+
+    .pipboy-nav nav button:last-child {
+      border-bottom: none;
+    }
+
+    .pipboy-main {
+      flex: 1;
     }
 
     .content {
@@ -385,27 +429,20 @@
     }
 
     .pip-logo {
-      font-size: 2.8rem;
+      font-size: 3rem;
     }
 
     h2 {
-      font-size: 1.9rem;
+      font-size: 2rem;
     }
 
     .tip-box {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
     }
   }
 
-  /* Tablet styles */
-  @media (min-width: 600px) and (max-width: 899px) {
-    .pipboy {
-      max-width: 680px;
-    }
-  }
-
-  /* Phone styles */
-  @media (max-width: 599px) {
+  /* Phone styles (max 600px) */
+  @media (max-width: 600px) {
     .pipboy {
       max-width: 100%;
     }
@@ -425,16 +462,20 @@
     STATUS: <span>AKTYWNY<span class="cursor"></span></span>
   </div>
 
-  <nav>
-    <button class="active" onclick="show('priorytety', this)">PRIORYTETY</button>
-    <button onclick="show('zasoby', this)">ZASOBY</button>
-    <button onclick="show('szczescie', this)">SZCZĘŚCIE</button>
-    <button onclick="show('taktyka', this)">TAKTYKA</button>
-    <button onclick="show('uprawy', this)">UPRAWY</button>
-    <button onclick="show('perki', this)">PERKI</button>
-  </nav>
+  <div class="pipboy-body">
+    <div class="pipboy-nav">
+      <nav>
+        <button class="active" onclick="show('priorytety', this)">PRIORYTETY</button>
+        <button onclick="show('zasoby', this)">ZASOBY</button>
+        <button onclick="show('szczescie', this)">SZCZĘŚCIE</button>
+        <button onclick="show('taktyka', this)">TAKTYKA</button>
+        <button onclick="show('uprawy', this)">UPRAWY</button>
+        <button onclick="show('perki', this)">PERKI</button>
+      </nav>
+    </div>
 
-  <div class="content">
+    <div class="pipboy-main">
+      <div class="content">
 
     <!-- PRIORYTETY -->
     <div class="section active" id="priorytety">
@@ -755,7 +796,6 @@
         Nie trać punktów na perki budowlane zanim nie masz działających 2-3 kolonii
       </div>
     </div>
-
   </div>
 
   <footer>
