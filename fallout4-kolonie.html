@@ -68,6 +68,32 @@
     border-radius: 12px;
   }
 
+  .site-nav {
+    background: #040f05;
+    border-bottom: 1px solid var(--green-dim);
+    display: flex;
+    gap: 20px;
+    padding: 8px 24px;
+  }
+
+  .site-nav a {
+    color: var(--green-dim);
+    text-decoration: none;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    transition: all 0.15s;
+  }
+
+  .site-nav a:hover {
+    color: var(--green);
+  }
+
+  .site-nav a.active {
+    color: var(--green);
+    text-shadow: 0 0 8px var(--green);
+  }
+
   header {
     background: #040f05;
     border-bottom: 2px solid var(--green-dim);
@@ -451,6 +477,11 @@
 </head>
 <body>
 <div class="pipboy">
+  <div class="site-nav">
+    <a href="fallout4-kolonie.html" class="active">⚙ KOLONIE</a>
+    <a href="frakcje.html">⚔ FRAKCJE</a>
+  </div>
+
   <header>
     <div class="pip-logo">PIP-BOY 3000 MK IV</div>
     <div class="pip-sub">MODUŁ: ZARZĄDZANIE KOLONIAMI // COMMONWEALTH</div>
