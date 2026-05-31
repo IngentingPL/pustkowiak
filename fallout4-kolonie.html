@@ -364,6 +364,52 @@
     display: flex;
     justify-content: space-between;
   }
+
+  /* Desktop styles */
+  @media (min-width: 900px) {
+    .pipboy {
+      max-width: 960px;
+    }
+
+    nav button {
+      font-size: 1.2rem;
+      padding: 12px 8px;
+    }
+
+    .content {
+      padding: 28px 36px;
+    }
+
+    .resource-grid {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .pip-logo {
+      font-size: 2.8rem;
+    }
+
+    h2 {
+      font-size: 1.9rem;
+    }
+
+    .tip-box {
+      font-size: 0.88rem;
+    }
+  }
+
+  /* Tablet styles */
+  @media (min-width: 600px) and (max-width: 899px) {
+    .pipboy {
+      max-width: 680px;
+    }
+  }
+
+  /* Phone styles */
+  @media (max-width: 599px) {
+    .pipboy {
+      max-width: 100%;
+    }
+  }
 </style>
 </head>
 <body>
