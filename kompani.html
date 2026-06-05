@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FRAKCJE — COMMONWEALTH</title>
+<title>KOMPANI — COMMONWEALTH</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap');
 
@@ -382,13 +382,13 @@
 <div class="pipboy">
   <div class="site-nav">
     <a href="fallout4-kolonie.html">⚙ KOLONIE</a>
-    <a href="frakcje.html" class="active">⚔ FRAKCJE</a>
-    <a href="kompani.html">👥 KOMPANI</a>
+    <a href="frakcje.html">⚔ FRAKCJE</a>
+    <a href="kompani.html" class="active">👥 KOMPANI</a>
   </div>
 
   <header>
     <div class="pip-logo">PIP-BOY 3000 MK IV</div>
-    <div class="pip-sub">MODUŁ: ANALIZA FRAKCJI // COMMONWEALTH</div>
+    <div class="pip-sub">MODUŁ: ANALIZA KOMPANÓW // COMMONWEALTH</div>
   </header>
 
   <div class="stat-bar">
@@ -401,10 +401,11 @@
     <div class="pipboy-nav">
       <nav>
         <button class="active" onclick="show('przeglad', this)">PRZEGLĄD</button>
-        <button onclick="show('minutemen', this)">MINUTEMEN</button>
-        <button onclick="show('bractwo', this)">BRACTWO</button>
-        <button onclick="show('railroad', this)">RAILROAD</button>
-        <button onclick="show('instytut', this)">INSTYTUT</button>
+        <button onclick="show('nick', this)">NICK VALENTINE</button>
+        <button onclick="show('dogmeat', this)">DOGMEAT</button>
+        <button onclick="show('curie', this)">CURIE</button>
+        <button onclick="show('cait', this)">CAIT</button>
+        <button onclick="show('pozostali', this)">POZOSTALI</button>
       </nav>
     </div>
 
@@ -413,191 +414,209 @@
 
     <!-- PRZEGLĄD -->
     <div class="section active" id="przeglad">
-      <h2>// CZTERY FRAKCJE</h2>
+      <h2>// SYSTEM KOMPANÓW</h2>
+
+      <div class="tip-box">
+        <span class="label">ZASADY SYSTEMU KOMPANÓW</span>
+        Możesz mieć tylko jednego kompana naraz (+ Dogmeat jako wyjątek). Im więcej robisz rzeczy które kompan lubi, tym wyższe powinowactwo (affinity). Maksymalne powinowactwo = odblokowanie unikalnego perku kompana.
+      </div>
+
+      <div class="tip-box warn">
+        <span class="label">POWINOWACTWO</span>
+        Kompani reagują na Twoje wybory w dialogach i akcje w świecie. Używanie narkotyków, morderstwa, kradzieże — większość kompanów tego nie lubi. Pomoc innym, uczciwe wybory dialogowe — większość to chwali.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">ROZMOWY OSOBISTE</span>
+        Co jakiś czas kompan inicjuje rozmowę osobistą — zawsze rozmawiaj, bo to główny sposób na budowanie powinowactwa i odblokowanie perku.
+      </div>
 
       <div class="resource-grid">
         <div class="res-card">
-          <div class="res-name">⚙ MINUTEMEN</div>
-          <div class="res-formula">Obrońcy Commonwealth<br>Baza: The Castle</div>
+          <div class="res-name">🤖 NICK VALENTINE</div>
+          <div class="res-formula">Najlepszy fabularnie<br>Otwiera zamki</div>
         </div>
         <div class="res-card">
-          <div class="res-name">✝ BRACTWO STALI</div>
-          <div class="res-formula">Militarna potęga<br>Baza: Prydwen (sterowiec)</div>
+          <div class="res-name">🐕 DOGMEAT</div>
+          <div class="res-formula">Jedyny bez systemu<br>powinowactwa<br>Zawsze lojalny</div>
         </div>
         <div class="res-card">
-          <div class="res-name">🚂 RAILROAD</div>
-          <div class="res-formula">Wyzwoliciele syntetyków<br>Baza: Old North Church</div>
+          <div class="res-name">🧪 CURIE</div>
+          <div class="res-formula">Najlepsza do eksploracji<br>Unikalny perk leczący</div>
         </div>
         <div class="res-card">
-          <div class="res-name">⚗ INSTYTUT</div>
-          <div class="res-formula">Twórcy syntetyków<br>Baza: ukryta</div>
+          <div class="res-name">👊 CAIT</div>
+          <div class="res-formula">Najlepsza do walki<br>Otwiera zamki</div>
         </div>
       </div>
+    </div>
+
+    <!-- NICK VALENTINE -->
+    <div class="section" id="nick">
+      <h2>// NICK VALENTINE</h2>
 
       <div class="tip-box">
-        <span class="label">WSZYSTKIE FRAKCJE NARAZ</span>
-        Możesz dołączyć do wszystkich 4 frakcji jednocześnie — do momentu gdy gra zmusi Cię do wyboru strony (późny etap głównego wątku).
+        <span class="label">GDZIE ZNALEŹĆ</span>
+        Vault 114 w Park Street Station (Boston). Trafisz do niego przez główny wątek fabularny — quest "Unlikely Valentine".
+      </div>
+
+      <div class="tip-box">
+        <span class="label">STYL WALKI</span>
+        Dystans średni, pistolet. Słabszy bojowo niż inni — jego wartość to umiejętności i dialogi, nie siła ognia.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">LUBI / NIE LUBI</span>
+        <ul class="checklist">
+          <li>Lubi: altruistyczne wybory, pomoc słabszym, uczciwe dialogi</li>
+          <li>Nie lubi: okrucieństwo, kanibalizm, używanie narkotyków</li>
+        </ul>
+      </div>
+
+      <div class="tip-box">
+        <span class="label">PERK (MAKS. POWINOWACTWO)</span>
+        Close to Metal — dwie dodatkowe próby hackowania terminali + reset cooldownu po nieudanej próbie. Kluczowy perk dla eksploratorów.
       </div>
 
       <div class="tip-box warn">
-        <span class="label">PUNKT BEZ POWROTU</span>
-        Misja "Mass Fusion" (Instytut) lub "Precipice of War" (Railroad/BOS) — po jej wykonaniu dwie frakcje stają się wrogami.
+        <span class="label">UNIKALNA CECHA</span>
+        Jako syntetyk otwiera zamki bez zużywania szpilek (bobby pins). Oszczędza mnóstwo zasobów w późnej grze.
       </div>
     </div>
 
-    <!-- MINUTEMEN -->
-    <div class="section" id="minutemen">
-      <h2>// MINUTEMEN</h2>
+    <!-- DOGMEAT -->
+    <div class="section" id="dogmeat">
+      <h2>// DOGMEAT</h2>
 
       <div class="tip-box">
-        <span class="label">IDEOLOGIA</span>
-        <em>"Każdy człowiek ma prawo do obrony i wolności. Minutemen to oddolny ruch oporu — bez hierarchii, bez rozkazów z góry. Wierzymy że Commonwealth można odbudować tylko razem, kolonia po kolonii."</em>
-        <strong>Kluczowe wartości:</strong> wolność, wspólnota, samowystarczalność.
+        <span class="label">GDZIE ZNALEŹĆ</span>
+        Red Rocket Truck Stop — tuż na południe od Sanctuary Hills. Spotykasz go na samym początku gry.
       </div>
 
       <div class="tip-box">
-        <span class="label">ZALETY</span>
-        <ul class="checklist">
-          <li>Najłatwiejsze zakończenie gry</li>
-          <li>Kompatybilni z Railroad (można ukończyć oba wątki)</li>
-          <li>Dają dostęp do artylerii kolonii</li>
-          <li>Jedyna frakcja która nigdy nie staje się wrogiem gracza</li>
-        </ul>
+        <span class="label">STYL WALKI</span>
+        Walka wręcz — atakuje wrogów, unieruchamia ich i rozbraja. Może przynosić przedmioty i śledzić wrogów po śladach zapachowych.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">LUBI / NIE LUBI</span>
+        Dogmeat nie ma systemu powinowactwa — możesz robić cokolwiek bez negatywnych konsekwencji. Idealny kompan moralnie neutralny.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">PERK (MAKS. POWINOWACTWO)</span>
+        Brak standardowego perku — ale perk "Attack Dog" w drzewku SPECIAL (Charyzma) wzmacnia Dogmeata: może unieruchamiać, krwawić i osłabiać wrogów.
       </div>
 
       <div class="tip-box warn">
-        <span class="label">WADY</span>
-        <ul class="checklist">
-          <li>Preston Garvey = nieskończone questy obrony kolonii</li>
-          <li>Słabe unikalne nagrody i ekwipunek</li>
-          <li>Wątek fabularny najkrótszy z czterech</li>
-        </ul>
-      </div>
-
-      <div class="tip-box">
-        <span class="label">UNIKALNY BONUS: ARTYLERIA KOLONIALNA</span>
-        Po odblokowaniu możesz wzywać ostrzał artyleryjski w dowolnym miejscu Commonwealth. Wymaga wybudowania artylerii w koloniach Minutemenów.
-      </div>
-
-      <div class="tip-box">
-        <span class="label">KOMPATYBILNOŚĆ Z INNYMI FRAKCJAMI</span>
-        <ul class="checklist">
-          <li>Railroad: ✅ Można ukończyć oba wątki</li>
-          <li>Bractwo Stali: ✅ Do pewnego momentu</li>
-          <li>Instytut: ❌ Wzajemnie wykluczające się zakończenia</li>
-        </ul>
+        <span class="label">UNIKALNA CECHA</span>
+        Jedyny kompan którego możesz mieć RAZEM z innym kompanem. Dogmeat + dowolny kompan = duet bez żadnych ograniczeń.
       </div>
     </div>
 
-    <!-- BRACTWO -->
-    <div class="section" id="bractwo">
-      <h2>// BRACTWO STALI</h2>
+    <!-- CURIE -->
+    <div class="section" id="curie">
+      <h2>// CURIE</h2>
 
-      <div class="tip-box warn">
-        <span class="label">IDEOLOGIA</span>
-        <em>"Zaawansowana technologia jest zbyt niebezpieczna w rękach nieulepszonych ludzi. Bractwo kontroluje, kataloguje i chroni technologię przed tymi, którzy mogliby jej nadużyć. Porządek przez siłę — dla dobra całej ludzkości."</em>
-        <strong>Kluczowe wartości:</strong> kontrola technologii, hierarchia militarna, porządek.
+      <div class="tip-box">
+        <span class="label">GDZIE ZNALEŹĆ</span>
+        Vault 81 — na zachód od Diamond City. Najpierw musisz wejść do Vaultu (potrzebujesz 3 rdzeni fuzyjnych jako opłata wejściowa).
       </div>
 
       <div class="tip-box">
-        <span class="label">ZALETY</span>
-        <ul class="checklist">
-          <li>Najlepszy ekwipunek i pancerz wspomagany (Power Armor)</li>
-          <li>Dostęp do Vertibirda (latający transport)</li>
-          <li>Silna baza fabularna, dużo questów</li>
-        </ul>
+        <span class="label">STYL WALKI</span>
+        Broń laserowa, dystans średni. Po przeniesieniu do ciała syntetyka (quest osobisty) staje się znacznie silniejsza bojowo.
       </div>
 
-      <div class="tip-box warn">
-        <span class="label">WADY</span>
+      <div class="tip-box">
+        <span class="label">LUBI / NIE LUBI</span>
         <ul class="checklist">
-          <li>Konflikt z Railroad (musisz ją zniszczyć)</li>
-          <li>Konflikt z Instytutem</li>
-          <li>Paternalistyczny stosunek do nieulepszonych ludzi — problematyczna ideologia</li>
+          <li>Lubi: altruizm, nauka, leczenie innych NPC, dobre wybory moralne</li>
+          <li>Nie lubi: okrucieństwo, zabijanie niewinnych, używanie narkotyków</li>
         </ul>
       </div>
 
       <div class="tip-box">
-        <span class="label">UNIKALNY BONUS: VERTIBIRD</span>
-        Vertibird Signal Grenades — wzywasz Vertibird jako transport/wsparcie ogniowe. Dostęp do bunkrów z amunicją i ekwipunkiem Bractwa.
+        <span class="label">PERK (MAKS. POWINOWACTWO)</span>
+        Combat Medic — raz na 24h gry gdy HP spada poniżej 10%, Curie automatycznie leczy Cię o 100 punktów. Ratuje życie.
       </div>
 
-      <div class="tip-box danger">
-        <span class="label">UWAGA</span>
-        Bractwo wymaga zniszczenia Railroad i Instytutu. Jeśli chcesz zachować Railroad — nie wybieraj Bractwa jako głównej frakcji.
+      <div class="tip-box warn">
+        <span class="label">UNIKALNA CECHA</span>
+        Ma quest osobisty który przenosi jej świadomość do ciała syntetyka. Po tym znacznie lepsza w walce i zyskuje nowe dialogi.
       </div>
     </div>
 
-    <!-- RAILROAD -->
-    <div class="section" id="railroad">
-      <h2>// RAILROAD</h2>
+    <!-- CAIT -->
+    <div class="section" id="cait">
+      <h2>// CAIT</h2>
 
       <div class="tip-box">
-        <span class="label">IDEOLOGIA</span>
-        <em>"Syntetyki to istoty czujące — mają prawo do wolności tak samo jak ludzie. Railroad działa w ukryciu, przemycając syntetyki z Instytutu i dając im nowe życie. Każdy zasługuje na drugą szansę."</em>
-        <strong>Kluczowe wartości:</strong> wolność syntetyków, równość, konspiracja.
+        <span class="label">GDZIE ZNALEŹĆ</span>
+        Combat Zone — na wschód od Diamond City. Uwolnij ją od jej właściciela Tommy'ego Lonegana po walce na arenie.
       </div>
 
       <div class="tip-box">
-        <span class="label">ZALETY</span>
+        <span class="label">STYL WALKI</span>
+        Walka wręcz i shotgun. Jedna z najsilniejszych bojowo — agresywna, rzuca się w wir walki. Potrafi włamywać się do zamków.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">LUBI / NIE LUBI</span>
         <ul class="checklist">
-          <li>Kompatybilni z Minutemenami (można ukończyć oba wątki)</li>
-          <li>Unikalne modyfikacje broni (ciche, zaawansowane)</li>
-          <li>Moralne zakończenie — ratowanie syntetyków</li>
+          <li>Lubi: otwieranie zamków, kieszonkowe kradzieże, selfish dialogi</li>
+          <li>Nie lubi: altruizm, szczodrość, oddawanie rzeczy za darmo</li>
         </ul>
+      </div>
+
+      <div class="tip-box">
+        <span class="label">PERK (MAKS. POWINOWACTWO)</span>
+        Trigger Rush — regeneracja punktów akcji (AP) przyspiesza o 25% gdy HP poniżej 25%. Bardzo silny perk do stylu walki VATS.
       </div>
 
       <div class="tip-box warn">
-        <span class="label">WADY</span>
-        <ul class="checklist">
-          <li>Krótki wątek questów</li>
-          <li>Mało unikalnego ekwipunku</li>
-          <li>Konflikt z Bractwem Stali</li>
-        </ul>
-      </div>
-
-      <div class="tip-box">
-        <span class="label">UNIKALNY BONUS</span>
-        Unikalne modyfikacje broni: Railroad Stealth Boy, szybkie ładownice. Dostęp do agentów Railroad jako sojuszników.
+        <span class="label">UNIKALNA CECHA</span>
+        Ma quest osobisty dotyczący uzależnienia od Psycho. Ukończenie go zmienia jej osobowość i preferencje powinowactwa.
       </div>
     </div>
 
-    <!-- INSTYTUT -->
-    <div class="section" id="instytut">
-      <h2>// INSTYTUT</h2>
+    <!-- POZOSTALI -->
+    <div class="section" id="pozostali">
+      <h2>// POZOSTALI KOMPANI</h2>
 
-      <div class="tip-box warn">
-        <span class="label">IDEOLOGIA</span>
-        <em>"Ludzkość popełniła błędy które doprowadziły do Wielkiej Wojny. Instytut buduje lepszą przyszłość poprzez naukę i technologię — bez sentymentów, bez kompromisów. Świat na powierzchni jest stracony. Przyszłość jest tu, pod ziemią."</em>
-        <strong>Kluczowe wartości:</strong> nauka, postęp, elitaryzm, kontrola.
-      </div>
-
-      <div class="tip-box">
-        <span class="label">ZALETY</span>
-        <ul class="checklist">
-          <li>Najbardziej rozbudowany wątek fabularny</li>
-          <li>Dostęp do zaawansowanej technologii i broni laserowej</li>
-          <li>Teleportacja (szybka podróż do Instytutu)</li>
-        </ul>
-      </div>
-
-      <div class="tip-box warn">
-        <span class="label">WADY</span>
-        <ul class="checklist">
-          <li>Konflikt z Railroad i Bractwem Stali</li>
-          <li>Etycznie kontrowersyjny wybór</li>
-          <li>Wiele postaci traktuje cię jako wroga po przystąpieniu</li>
-        </ul>
-      </div>
-
-      <div class="tip-box danger">
-        <span class="label">UWAGA</span>
-        Instytut wymaga zniszczenia Railroad i Bractwa Stali. Jest to frakcja dla graczy zainteresowanych głównie fabułą, nie współpracą z innymi frakcjami.
-      </div>
-
-      <div class="tip-box">
-        <span class="label">UNIKALNY BONUS</span>
-        Syntezator — możliwość tworzenia syntetyków jako sojuszników. Zaawansowane laboratoria i broń laserowa wyższego poziomu.
+      <div class="resource-grid">
+        <div class="res-card">
+          <div class="res-name">PRESTON GARVEY</div>
+          <div class="res-formula">Gdzie: Museum of Freedom, Concord<br>Perk: United We Stand (+20% obrażeń i +20 DR gdy 3+ wrogów)<br>Uwaga: inicjuje nieskończone questy obrony kolonii</div>
+        </div>
+        <div class="res-card">
+          <div class="res-name">PIPER WRIGHT</div>
+          <div class="res-formula">Gdzie: Diamond City, główna brama<br>Perk: Gift of Gab (podwójne XP za odkrywanie lokacji i dialogi)<br>Uwaga: idealna dla graczy skupionych na fabule i eksploracji</div>
+        </div>
+        <div class="res-card">
+          <div class="res-name">HANCOCK</div>
+          <div class="res-formula">Gdzie: Goodneighbor, Mały Kalk<br>Perk: Isodoped (+20 AP VATS przez 10s po Radaway)<br>Uwaga: lubi używanie narkotyków i chem</div>
+        </div>
+        <div class="res-card">
+          <div class="res-name">MacCREADY</div>
+          <div class="res-formula">Gdzie: Goodneighbor, Third Rail bar<br>Perk: Killshot (+20% trafień w głowę w VATS)<br>Uwaga: najlepszy perk dla snajperów</div>
+        </div>
+        <div class="res-card">
+          <div class="res-name">STRONG</div>
+          <div class="res-formula">Gdzie: Trinity Tower (wymaga uwolnienia)<br>Perk: Berserk (+20% obrażeń broni białej gdy HP < 25%)<br>Uwaga: nie lubi skradania i dialogów</div>
+        </div>
+        <div class="res-card">
+          <div class="res-name">X6-88</div>
+          <div class="res-formula">Gdzie: Instytut (dostępny po dołączeniu)<br>Perk: Shield Harmonics (+20 Energy Resistance)<br>Uwaga: tylko dla graczy Instytutu</div>
+        </div>
+        <div class="res-card">
+          <div class="res-name">DEACON</div>
+          <div class="res-formula">Gdzie: Old North Church (Railroad)<br>Perk: Cloak & Dagger (+40% Stealth Boy, +20% obrażeń przy skradaniu)<br>Uwaga: idealny do skradanki</div>
+        </div>
+        <div class="res-card">
+          <div class="res-name">DANSE</div>
+          <div class="res-formula">Gdzie: Cambridge Police Station (quest z Bractwem)<br>Perk: Know Your Enemy (+20% obrażeń vs ghoule, syntetyki, mutanci)<br>Uwaga: dostępny przed konfliktem z Bractwem</div>
+        </div>
       </div>
     </div>
   </div>

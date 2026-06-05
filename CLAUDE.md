@@ -9,6 +9,7 @@ Hostowany na GitHub Pages: https://ingentingpl.github.io/pustkowiak/
 pustkowiak/
 ├── fallout4-kolonie.html   # Poradnik do kolonii
 ├── frakcje.html            # Poradnik do frakcji
+├── kompani.html            # Poradnik do kompanów
 ├── CLAUDE.md               # Ten plik
 └── design.md               # System wizualny
 ```
