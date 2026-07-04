@@ -10,7 +10,6 @@ pustkowiak/
 ├── fallout4-kolonie.html   # Poradnik do kolonii
 ├── frakcje.html            # Poradnik do frakcji
 ├── kompani.html            # Poradnik do kompanów
-├── survival.html           # Poradnik do trybu Survival
 ├── CLAUDE.md               # Ten plik
 └── design.md               # System wizualny
 ```

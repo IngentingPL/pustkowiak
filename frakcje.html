@@ -273,6 +273,60 @@
     50% { opacity: 0; }
   }
 
+  /* Endings table styles */
+  .table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 16px;
+  }
+
+  .endings-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--green-dark);
+    font-size: 0.78rem;
+    min-width: 500px;
+  }
+
+  .endings-table th {
+    background: var(--green-dark);
+    color: var(--green);
+    font-family: 'VT323', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    padding: 10px 14px;
+    text-align: center;
+    border: 1px solid var(--green-dim);
+    border-bottom: 2px solid var(--green-dim);
+  }
+
+  .endings-table td {
+    padding: 10px 14px;
+    border: 1px solid var(--green-dim);
+    text-align: center;
+  }
+
+  .endings-table .row-header {
+    font-family: 'VT323', monospace;
+    color: var(--green);
+    text-align: left;
+    background: #0a1f0c;
+  }
+
+  .endings-table .cell-yes {
+    color: #3a7d44;
+    font-weight: bold;
+  }
+
+  .endings-table .cell-no {
+    color: #c0392b;
+    font-weight: bold;
+  }
+
+  .endings-table .cell-maybe {
+    color: #f59f00;
+    font-weight: bold;
+  }
+
   .cursor {
     display: inline-block;
     width: 8px;
@@ -384,7 +438,6 @@
     <a href="fallout4-kolonie.html">⚙ KOLONIE</a>
     <a href="frakcje.html" class="active">⚔ FRAKCJE</a>
     <a href="kompani.html">👥 KOMPANI</a>
-    <a href="survival.html">☢ SURVIVAL</a>
   </div>
 
   <header>
@@ -406,6 +459,7 @@
         <button onclick="show('bractwo', this)">BRACTWO</button>
         <button onclick="show('railroad', this)">RAILROAD</button>
         <button onclick="show('instytut', this)">INSTYTUT</button>
+        <button onclick="show('koncowki', this)">KOŃCÓWKI</button>
       </nav>
     </div>
 
@@ -599,6 +653,123 @@
       <div class="tip-box">
         <span class="label">UNIKALNY BONUS</span>
         Syntezator — możliwość tworzenia syntetyków jako sojuszników. Zaawansowane laboratoria i broń laserowa wyższego poziomu.
+      </div>
+    </div>
+
+    <!-- KOŃCÓWKI -->
+    <div class="section" id="koncowki">
+      <h2>// KOŃCÓWKI</h2>
+
+      <div class="tip-box">
+        <span class="label">JAK DZIAŁAJĄ ZAKOŃCZENIA</span>
+        Gra ma 4 różne zakończenia — jedno dla każdej frakcji.
+        Możesz współpracować z wieloma frakcjami jednocześnie,
+        ale w pewnym momencie musisz wybrać stronę.
+        Twój wybór decyduje które frakcje przeżyją, a które zostaną zniszczone.
+      </div>
+
+      <h2>// KOMPATYBILNOŚĆ ZAKOŃCZEŃ</h2>
+
+      <div class="table-wrapper">
+        <table class="endings-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>MINUTEMEN</th>
+              <th>BRACTWO</th>
+              <th>RAILROAD</th>
+              <th>INSTYTUT</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-header">Minutemen przeżyją</td>
+              <td class="cell-yes">✅</td>
+              <td class="cell-maybe">⚠</td>
+              <td class="cell-yes">✅</td>
+              <td class="cell-no">❌</td>
+            </tr>
+            <tr>
+              <td class="row-header">Bractwo przeżyje</td>
+              <td class="cell-maybe">⚠</td>
+              <td class="cell-yes">✅</td>
+              <td class="cell-no">❌</td>
+              <td class="cell-no">❌</td>
+            </tr>
+            <tr>
+              <td class="row-header">Railroad przeżyje</td>
+              <td class="cell-yes">✅</td>
+              <td class="cell-no">❌</td>
+              <td class="cell-yes">✅</td>
+              <td class="cell-no">❌</td>
+            </tr>
+            <tr>
+              <td class="row-header">Instytut przeżyje</td>
+              <td class="cell-no">❌</td>
+              <td class="cell-no">❌</td>
+              <td class="cell-no">❌</td>
+              <td class="cell-yes">✅</td>
+            </tr>
+            <tr>
+              <td class="row-header">Nick Valentine żyje</td>
+              <td class="cell-yes">✅</td>
+              <td class="cell-yes">✅</td>
+              <td class="cell-yes">✅</td>
+              <td class="cell-maybe">⚠</td>
+            </tr>
+            <tr>
+              <td class="row-header">Danse żyje</td>
+              <td class="cell-yes">✅</td>
+              <td class="cell-maybe">⚠</td>
+              <td class="cell-yes">✅</td>
+              <td class="cell-yes">✅</td>
+            </tr>
+            <tr>
+              <td class="row-header">X6-88 dostępny</td>
+              <td class="cell-no">❌</td>
+              <td class="cell-no">❌</td>
+              <td class="cell-no">❌</td>
+              <td class="cell-yes">✅</td>
+            </tr>
+            <tr>
+              <td class="row-header">Deacon dostępny</td>
+              <td class="cell-yes">✅</td>
+              <td class="cell-no">❌</td>
+              <td class="cell-yes">✅</td>
+              <td class="cell-no">❌</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tip-box">
+        <span class="label">✅ TAK</span>
+        Frakcja/kompan przeżywa lub jest dostępny.
+      </div>
+
+      <div class="tip-box warn">
+        <span class="label">⚠ WARUNKOWO</span>
+        Zależy od Twoich wyborów w konkretnych questach.
+      </div>
+
+      <div class="tip-box danger">
+        <span class="label">❌ NIE</span>
+        Frakcja zostaje zniszczona lub kompan niedostępny.
+      </div>
+
+      <div class="tip-box warn">
+        <span class="label">NAJLEPSZE ZAKOŃCZENIE DLA KOMPANÓW</span>
+        Minutemen lub Railroad = najwięcej kompanów przeżywa.
+        Instytut = tracisz dostęp do większości kompanów i frakcji.
+        Bractwo = tracisz Railroad i jej agentów.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">ZAKOŃCZENIE MINIMALISTYCZNE</span>
+        Minutemen + Railroad to jedyne zakończenie gdzie:
+        nie musisz niszczyć żadnej frakcji samodzielnie,
+        większość kompanów pozostaje dostępna,
+        możesz ukończyć oba wątki questów.
       </div>
     </div>
   </div>
