@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KOMPANI — COMMONWEALTH</title>
+<title>CHEMY — COMMONWEALTH</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap');
 
@@ -383,13 +383,13 @@
   <div class="site-nav">
     <a href="fallout4-kolonie.html">⚙ KOLONIE</a>
     <a href="frakcje.html">⚔ FRAKCJE</a>
-    <a href="kompani.html" class="active">👥 KOMPANI</a>
-    <a href="chemy.html">💊 CHEMY</a>
+    <a href="kompani.html">👥 KOMPANI</a>
+    <a href="chemy.html" class="active">💊 CHEMY</a>
   </div>
 
   <header>
     <div class="pip-logo">PIP-BOY 3000 MK IV</div>
-    <div class="pip-sub">MODUŁ: ANALIZA KOMPANÓW // COMMONWEALTH</div>
+    <div class="pip-sub">MODUŁ: ANALIZA CHEM // COMMONWEALTH</div>
   </header>
 
   <div class="stat-bar">
@@ -402,11 +402,9 @@
     <div class="pipboy-nav">
       <nav>
         <button class="active" onclick="show('przeglad', this)">PRZEGLĄD</button>
-        <button onclick="show('nick', this)">NICK VALENTINE</button>
-        <button onclick="show('dogmeat', this)">DOGMEAT</button>
-        <button onclick="show('curie', this)">CURIE</button>
-        <button onclick="show('cait', this)">CAIT</button>
-        <button onclick="show('pozostali', this)">POZOSTALI</button>
+        <button onclick="show('bojowe', this)">BOJOWE</button>
+        <button onclick="show('uzytkowe', this)">UŻYTKOWE</button>
+        <button onclick="show('uzaleznienie', this)">UZALEŻNIENIE</button>
       </nav>
     </div>
 
@@ -415,209 +413,180 @@
 
     <!-- PRZEGLĄD -->
     <div class="section active" id="przeglad">
-      <h2>// SYSTEM KOMPANÓW</h2>
-
-      <div class="tip-box">
-        <span class="label">ZASADY SYSTEMU KOMPANÓW</span>
-        Możesz mieć tylko jednego kompana naraz (+ Dogmeat jako wyjątek). Im więcej robisz rzeczy które kompan lubi, tym wyższe powinowactwo (affinity). Maksymalne powinowactwo = odblokowanie unikalnego perku kompana.
-      </div>
+      <h2>// SYSTEM CHEM</h2>
 
       <div class="tip-box warn">
-        <span class="label">POWINOWACTWO</span>
-        Kompani reagują na Twoje wybory w dialogach i akcje w świecie. Używanie narkotyków, morderstwa, kradzieże — większość kompanów tego nie lubi. Pomoc innym, uczciwe wybory dialogowe — większość to chwali.
+        <span class="label">UZALEŻNIENIE</span>
+        Każdy chem ma % szans na uzależnienie po użyciu. Uzależnienie = kary do statystyk dopóki nie weźmiesz kolejnej dawki lub nie wyleczysz się u doktora (Diamond City, Goodneighbor).
       </div>
 
       <div class="tip-box">
-        <span class="label">ROZMOWY OSOBISTE</span>
-        Co jakiś czas kompan inicjuje rozmowę osobistą — zawsze rozmawiaj, bo to główny sposób na budowanie powinowactwa i odblokowanie perku.
+        <span class="label">PERK CHEMIST</span>
+        Perk Chemist (Intelligence 7) redukuje ryzyko uzależnienia. Rank 1: -50% szans. Rank 5: brak uzależnienia w ogóle.
       </div>
+
+      <div class="tip-box">
+        <span class="label">PERK CHEM RESISTANT</span>
+        Endurance 5 → Chem Resistant: Rank 1: -50% szans na uzależnienie. Rank 2: całkowita odporność na uzależnienia.
+      </div>
+    </div>
+
+    <!-- BOJOWE -->
+    <div class="section" id="bojowe">
+      <h2>// CHEMY BOJOWE</h2>
 
       <div class="resource-grid">
         <div class="res-card">
-          <div class="res-name">🤖 NICK VALENTINE</div>
-          <div class="res-formula">Najlepszy fabularnie<br>Otwiera zamki</div>
+          <div class="res-name">PSYCHO</div>
+          <div class="res-formula">Efekt: +25% obrażeń, +25 DR (5 min)<br>Uzależnienie: 15%<br>Najlepsze do: bossowie</div>
         </div>
         <div class="res-card">
-          <div class="res-name">🐕 DOGMEAT</div>
-          <div class="res-formula">Jedyny bez systemu<br>powinowactwa<br>Zawsze lojalny</div>
+          <div class="res-name">JET</div>
+          <div class="res-formula">Efekt: spowolnienie czasu (10 sek)<br>Uzależnienie: 20%<br>Najlepsze do: walka z grupą</div>
         </div>
         <div class="res-card">
-          <div class="res-name">🧪 CURIE</div>
-          <div class="res-formula">Najlepsza do eksploracji<br>Unikalny perk leczący</div>
+          <div class="res-name">TURBO</div>
+          <div class="res-formula">Efekt: ekstremalne spowolnienie (3 sek)<br>Uzależnienie: 8%<br>Najlepsze do: ucieczka, snajper</div>
         </div>
         <div class="res-card">
-          <div class="res-name">👊 CAIT</div>
-          <div class="res-formula">Najlepsza do walki<br>Otwiera zamki</div>
+          <div class="res-name">FURY</div>
+          <div class="res-formula">Efekt: +15% obrażeń białą, +50% odporność na ból<br>Uzależnienie: 10%<br>Najlepsze do: build melee</div>
         </div>
       </div>
-    </div>
-
-    <!-- NICK VALENTINE -->
-    <div class="section" id="nick">
-      <h2>// NICK VALENTINE</h2>
 
       <div class="tip-box">
-        <span class="label">GDZIE ZNALEŹĆ</span>
-        Vault 114 w Park Street Station (Boston). Trafisz do niego przez główny wątek fabularny — quest "Unlikely Valentine".
+        <span class="label">PSYCHO</span>
+        Efekt: +25% obrażeń, +25 Damage Resistance przez 5 min<br>
+        Uzależnienie: 15% szans<br>
+        Najlepsze do: trudne walki, bossowie<br>
+        Crafting: Combat Zone lub Chemistry Station
       </div>
 
       <div class="tip-box">
-        <span class="label">STYL WALKI</span>
-        Dystans średni, pistolet. Słabszy bojowo niż inni — jego wartość to umiejętności i dialogi, nie siła ognia.
+        <span class="label">JET</span>
+        Efekt: czas zwalnia — więcej akcji w VATS przez 10 sek<br>
+        Uzależnienie: 20% szans<br>
+        Najlepsze do: walki z wieloma wrogami naraz<br>
+        Uwaga: Jet + Turbo = bardzo silne combo
       </div>
 
       <div class="tip-box">
-        <span class="label">LUBI / NIE LUBI</span>
-        <ul class="checklist">
-          <li>Lubi: altruistyczne wybory, pomoc słabszym, uczciwe dialogi</li>
-          <li>Nie lubi: okrucieństwo, kanibalizm, używanie narkotyków</li>
-        </ul>
+        <span class="label">TURBO</span>
+        Efekt: ekstremalnie spowalnia czas przez 3 sek<br>
+        Uzależnienie: 8% szans<br>
+        Najlepsze do: ucieczka z zasadzki, snajperzy<br>
+        Crafting: wymaga Jet + Mentats + Buffout
       </div>
 
       <div class="tip-box">
-        <span class="label">PERK (MAKS. POWINOWACTWO)</span>
-        Close to Metal — dwie dodatkowe próby hackowania terminali + reset cooldownu po nieudanej próbie. Kluczowy perk dla eksploratorów.
-      </div>
-
-      <div class="tip-box warn">
-        <span class="label">UNIKALNA CECHA</span>
-        Jako syntetyk otwiera zamki bez zużywania szpilek (bobby pins). Oszczędza mnóstwo zasobów w późnej grze.
-      </div>
-    </div>
-
-    <!-- DOGMEAT -->
-    <div class="section" id="dogmeat">
-      <h2>// DOGMEAT</h2>
-
-      <div class="tip-box">
-        <span class="label">GDZIE ZNALEŹĆ</span>
-        Red Rocket Truck Stop — tuż na południe od Sanctuary Hills. Spotykasz go na samym początku gry.
-      </div>
-
-      <div class="tip-box">
-        <span class="label">STYL WALKI</span>
-        Walka wręcz — atakuje wrogów, unieruchamia ich i rozbraja. Może przynosić przedmioty i śledzić wrogów po śladach zapachowych.
-      </div>
-
-      <div class="tip-box">
-        <span class="label">LUBI / NIE LUBI</span>
-        Dogmeat nie ma systemu powinowactwa — możesz robić cokolwiek bez negatywnych konsekwencji. Idealny kompan moralnie neutralny.
-      </div>
-
-      <div class="tip-box">
-        <span class="label">PERK (MAKS. POWINOWACTWO)</span>
-        Brak standardowego perku — ale perk "Attack Dog" w drzewku SPECIAL (Charyzma) wzmacnia Dogmeata: może unieruchamiać, krwawić i osłabiać wrogów.
-      </div>
-
-      <div class="tip-box warn">
-        <span class="label">UNIKALNA CECHA</span>
-        Jedyny kompan którego możesz mieć RAZEM z innym kompanem. Dogmeat + dowolny kompan = duet bez żadnych ograniczeń.
+        <span class="label">FURY</span>
+        Efekt: +15% obrażeń broni białej, +50% odporność na ból<br>
+        Uzależnienie: 10% szans<br>
+        Najlepsze do: build melee
       </div>
     </div>
 
-    <!-- CURIE -->
-    <div class="section" id="curie">
-      <h2>// CURIE</h2>
-
-      <div class="tip-box">
-        <span class="label">GDZIE ZNALEŹĆ</span>
-        Vault 81 — na zachód od Diamond City. Najpierw musisz wejść do Vaultu (potrzebujesz 3 rdzeni fuzyjnych jako opłata wejściowa).
-      </div>
-
-      <div class="tip-box">
-        <span class="label">STYL WALKI</span>
-        Broń laserowa, dystans średni. Po przeniesieniu do ciała syntetyka (quest osobisty) staje się znacznie silniejsza bojowo.
-      </div>
-
-      <div class="tip-box">
-        <span class="label">LUBI / NIE LUBI</span>
-        <ul class="checklist">
-          <li>Lubi: altruizm, nauka, leczenie innych NPC, dobre wybory moralne</li>
-          <li>Nie lubi: okrucieństwo, zabijanie niewinnych, używanie narkotyków</li>
-        </ul>
-      </div>
-
-      <div class="tip-box">
-        <span class="label">PERK (MAKS. POWINOWACTWO)</span>
-        Combat Medic — raz na 24h gry gdy HP spada poniżej 10%, Curie automatycznie leczy Cię o 100 punktów. Ratuje życie.
-      </div>
-
-      <div class="tip-box warn">
-        <span class="label">UNIKALNA CECHA</span>
-        Ma quest osobisty który przenosi jej świadomość do ciała syntetyka. Po tym znacznie lepsza w walce i zyskuje nowe dialogi.
-      </div>
-    </div>
-
-    <!-- CAIT -->
-    <div class="section" id="cait">
-      <h2>// CAIT</h2>
-
-      <div class="tip-box">
-        <span class="label">GDZIE ZNALEŹĆ</span>
-        Combat Zone — na wschód od Diamond City. Uwolnij ją od jej właściciela Tommy'ego Lonegana po walce na arenie.
-      </div>
-
-      <div class="tip-box">
-        <span class="label">STYL WALKI</span>
-        Walka wręcz i shotgun. Jedna z najsilniejszych bojowo — agresywna, rzuca się w wir walki. Potrafi włamywać się do zamków.
-      </div>
-
-      <div class="tip-box">
-        <span class="label">LUBI / NIE LUBI</span>
-        <ul class="checklist">
-          <li>Lubi: otwieranie zamków, kieszonkowe kradzieże, selfish dialogi</li>
-          <li>Nie lubi: altruizm, szczodrość, oddawanie rzeczy za darmo</li>
-        </ul>
-      </div>
-
-      <div class="tip-box">
-        <span class="label">PERK (MAKS. POWINOWACTWO)</span>
-        Trigger Rush — regeneracja punktów akcji (AP) przyspiesza o 25% gdy HP poniżej 25%. Bardzo silny perk do stylu walki VATS.
-      </div>
-
-      <div class="tip-box warn">
-        <span class="label">UNIKALNA CECHA</span>
-        Ma quest osobisty dotyczący uzależnienia od Psycho. Ukończenie go zmienia jej osobowość i preferencje powinowactwa.
-      </div>
-    </div>
-
-    <!-- POZOSTALI -->
-    <div class="section" id="pozostali">
-      <h2>// POZOSTALI KOMPANI</h2>
+    <!-- UŻYTKOWE -->
+    <div class="section" id="uzytkowe">
+      <h2>// CHEMY UŻYTKOWE</h2>
 
       <div class="resource-grid">
         <div class="res-card">
-          <div class="res-name">PRESTON GARVEY</div>
-          <div class="res-formula">Gdzie: Museum of Freedom, Concord<br>Perk: United We Stand (+20% obrażeń i +20 DR gdy 3+ wrogów)<br>Uwaga: inicjuje nieskończone questy obrony kolonii</div>
+          <div class="res-name">STIMPAK</div>
+          <div class="res-formula">Efekt: natychmiastowe leczenie HP<br>Uzależnienie: brak<br>Uwaga: zawsze miej 20+</div>
         </div>
         <div class="res-card">
-          <div class="res-name">PIPER WRIGHT</div>
-          <div class="res-formula">Gdzie: Diamond City, główna brama<br>Perk: Gift of Gab (podwójne XP za odkrywanie lokacji i dialogi)<br>Uwaga: idealna dla graczy skupionych na fabule i eksploracji</div>
+          <div class="res-name">RADAWAY</div>
+          <div class="res-formula">Efekt: usuwa radiację<br>Uzależnienie: 8%<br>Uwaga: używaj gdy rads > 400</div>
         </div>
         <div class="res-card">
-          <div class="res-name">HANCOCK</div>
-          <div class="res-formula">Gdzie: Goodneighbor, Mały Kalk<br>Perk: Isodoped (+20 AP VATS przez 10s po Radaway)<br>Uwaga: lubi używanie narkotyków i chem</div>
+          <div class="res-name">MENTATS</div>
+          <div class="res-formula">Efekt: +2 INT, +2 PER (5 min)<br>Uzależnienie: 10%<br>Najlepsze do: hackowanie</div>
         </div>
         <div class="res-card">
-          <div class="res-name">MacCREADY</div>
-          <div class="res-formula">Gdzie: Goodneighbor, Third Rail bar<br>Perk: Killshot (+20% trafień w głowę w VATS)<br>Uwaga: najlepszy perk dla snajperów</div>
+          <div class="res-name">BUFFOUT</div>
+          <div class="res-formula">Efekt: +3 STR, +3 END, +75 HP (5 min)<br>Uzależnienie: 10%<br>Najlepsze do: walka wręcz</div>
         </div>
         <div class="res-card">
-          <div class="res-name">STRONG</div>
-          <div class="res-formula">Gdzie: Trinity Tower (wymaga uwolnienia)<br>Perk: Berserk (+20% obrażeń broni białej gdy HP < 25%)<br>Uwaga: nie lubi skradania i dialogów</div>
+          <div class="res-name">GRAPE MENTATS</div>
+          <div class="res-formula">Efekt: +5 CHA, tańsze ceny (8 min)<br>Uzależnienie: 10%<br>Najlepsze do: handel</div>
         </div>
-        <div class="res-card">
-          <div class="res-name">X6-88</div>
-          <div class="res-formula">Gdzie: Instytut (dostępny po dołączeniu)<br>Perk: Shield Harmonics (+20 Energy Resistance)<br>Uwaga: tylko dla graczy Instytutu</div>
-        </div>
-        <div class="res-card">
-          <div class="res-name">DEACON</div>
-          <div class="res-formula">Gdzie: Old North Church (Railroad)<br>Perk: Cloak & Dagger (+40% Stealth Boy, +20% obrażeń przy skradaniu)<br>Uwaga: idealny do skradanki</div>
-        </div>
-        <div class="res-card">
-          <div class="res-name">DANSE</div>
-          <div class="res-formula">Gdzie: Cambridge Police Station (quest z Bractwem)<br>Perk: Know Your Enemy (+20% obrażeń vs ghoule, syntetyki, mutanci)<br>Uwaga: dostępny przed konfliktem z Bractwem</div>
-        </div>
+      </div>
+
+      <div class="tip-box">
+        <span class="label">STIMPAK</span>
+        Efekt: natychmiastowe leczenie HP<br>
+        Uzależnienie: brak<br>
+        Uwaga: podstawowy lek, zawsze miej 20+
+      </div>
+
+      <div class="tip-box">
+        <span class="label">RADAWAY</span>
+        Efekt: usuwa radiację<br>
+        Uzależnienie: 8% szans<br>
+        Uwaga: używaj tylko gdy promieniowanie > 400 HP
+      </div>
+
+      <div class="tip-box">
+        <span class="label">MENTATS</span>
+        Efekt: +2 Intelligence, +2 Perception przez 5 min<br>
+        Uzależnienie: 10% szans<br>
+        Najlepsze do: hakowanie terminali, rozmowy dialogowe
+      </div>
+
+      <div class="tip-box">
+        <span class="label">BUFFOUT</span>
+        Efekt: +3 Strength, +3 Endurance, +75 HP przez 5 min<br>
+        Uzależnienie: 10% szans<br>
+        Najlepsze do: walka wręcz, dźwiganie ciężkiego łupu
+      </div>
+
+      <div class="tip-box">
+        <span class="label">GRAPE MENTATS</span>
+        Efekt: +5 Charisma, tańsze ceny u handlarzy przez 8 min<br>
+        Uzależnienie: 10% szans<br>
+        Najlepsze do: handel — użyj przed każdą większą transakcją
+      </div>
+    </div>
+
+    <!-- UZALEŻNIENIE -->
+    <div class="section" id="uzaleznienie">
+      <h2>// UZALEŻNIENIE</h2>
+
+      <div class="tip-box danger">
+        <span class="label">OBJAWY UZALEŻNIENIA</span>
+        Każde uzależnienie daje konkretną karę do statystyk:<br>
+        - Psycho: -1 Intelligence, -1 Perception<br>
+        - Jet: -1 Strength, -1 Endurance<br>
+        - Buffout: -1 Strength, -1 Endurance, -1 Agility<br>
+        - Mentats: -1 Intelligence, -1 Perception<br>
+        - Alkohol: -1 Intelligence, -1 Charisma
+      </div>
+
+      <div class="tip-box">
+        <span class="label">JAK SIĘ LECZYĆ</span>
+        <ul class="checklist">
+          <li>Doktor w Diamond City (Doctor Sun) — płatne leczenie</li>
+          <li>Doktor w Goodneighbor (Doctor Amari) — droższe</li>
+          <li>Perk Addictol — jednorazowy lek craftowany na Chemistry Station</li>
+          <li>Kompan Cait — jej perk eliminuje uzależnienia po ukończeniu questu osobistego</li>
+        </ul>
+      </div>
+
+      <div class="tip-box warn">
+        <span class="label">CRAFTING ADDICTOL</span>
+        Chemistry Station:<br>
+        Glowing Fungus x2 + Bloodleaf x2 + Antiseptic x1 = Addictol x1
+      </div>
+
+      <div class="tip-box">
+        <span class="label">BEZPIECZNE UŻYCIE</span>
+        <ul class="checklist">
+          <li>Miej zawsze Addictol w ekwipunku</li>
+          <li>Nie mieszaj więcej niż 2 chemy naraz</li>
+          <li>Perk Chem Resistant rank 2 = używaj bez obaw</li>
+          <li>Grape Mentats przed handlem to jedyne uzależnienie które warto ryzykować regularnie</li>
+        </ul>
       </div>
     </div>
   </div>
