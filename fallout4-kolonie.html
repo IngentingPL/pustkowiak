@@ -506,6 +506,7 @@
         <button onclick="show('uprawy', this)">UPRAWY</button>
         <button onclick="show('perki', this)">PERKI</button>
         <button onclick="show('lokacje', this)">LOKACJE</button>
+        <button onclick="show('profity', this)">PROFITY</button>
       </nav>
     </div>
 
@@ -963,6 +964,150 @@ Sanctuary ←→ Red Rocket ←→ Starlight ←→ Hangman's Alley
           <li><strong>Graygarden</strong> — automatyczna farma bez osadników</li>
           <li><strong>Spectacle Island</strong> — projekt dla zaawansowanych, maksymalna rozbudowa</li>
         </ul>
+      </div>
+    </div>
+
+    <!-- PROFITY -->
+    <div class="section" id="profity">
+      <h2>// CO DAJĄ KOLONIE</h2>
+
+      <div class="tip-box">
+        <span class="label">KAPPLE (PASYWNY DOCHÓD)</span>
+        Sklepy w koloniach generują kapple automatycznie co kilka dni gry.<br>
+        Tier 1 sklep: ~50 kapsli / dzień gry<br>
+        Tier 3 sklep: ~200 kapsli / dzień gry<br>
+        Sieć 5 kolonii po 2 sklepy Tier 3 = 2000+ kapsli na sesję.<br>
+        Zbieraj regularnie z workbencha każdej kolonii.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">CZYSTA WODA</span>
+        Nadwyżka wody z oczyszczaczy ląduje automatycznie w workbenchu.<br>
+        Cena sprzedaży: ~3 kapple za sztukę u handlarzy.<br>
+        Oczyszczacz przemysłowy (+40 wody) w 5 koloniach =<br>
+        pasywna produkcja setek butelek wody na sesję.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">GLOBALNY MAGAZYN</span>
+        Linie zaopatrzenia (Local Leader rank 1) łączą workbenche kolonii.<br>
+        Jeden wspólny ekwipunek dla całej sieci —<br>
+        modyfikujesz broń w Sanctuary, używasz materiałów zebranych w Castle.<br>
+        Koniec z noszeniem wszystkiego na sobie.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">PUNKTY ZAPISU I ODPOCZYNKU</span>
+        Łóżko w kolonii = bezpieczny zapis + efekt Well Rested.<br>
+        Well Rested: +10% XP przez 8 godzin gry.<br>
+        Sieć kolonii = system checkpointów przez całą mapę.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">ARTYLERIA MINUTEMENÓW</span>
+        Po odbudowie The Castle możesz budować armaty artyleryjskie.<br>
+        Każda armatka w kolonii = możliwość wezwania ostrzału<br>
+        w dowolnym miejscu Commonwealth (granaty dymne jako znacznik).<br>
+        Najsilniejsze wsparcie ogniowe w grze.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">SKLEPY I HANDLARZE</span>
+        Perk Local Leader rank 2 odblokowuje budowę sklepów:<br>
+        - Tier 1: podstawowy asortyment<br>
+        - Tier 2: rzadsze przedmioty<br>
+        - Tier 3: unikalne przedmioty, duże zasoby kapsli<br>
+        Handlarze odwiedzają kolonie z siecią sklepów automatycznie.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">BAZA WYPADOWA</span>
+        Kolonie jako bazy wypadowe skracają czas eksploracji.<br>
+        Zdeponuj ciężki łup w workbenchu i wróć po niego później.<br>
+        Nie musisz wracać do Sanctuary po każdej wyprawie.
+      </div>
+
+      <h2>// MINUSY KOLONII</h2>
+
+      <div class="tip-box danger">
+        <span class="label">NIESKOŃCZONE QUESTY MINUTEMENÓW</span>
+        Preston Garvey generuje nieskończone questy obrony kolonii.<br>
+        Nie mają końca — możesz je ignorować bez konsekwencji<br>
+        jeśli obrona kolonii jest wystarczająca (patrz zakładka Priorytety).<br>
+        Rozwiązanie: po prostu nie rozmawiaj z Prestonem gdy nie chcesz questu.
+      </div>
+
+      <div class="tip-box danger">
+        <span class="label">ATAKI NA KOLONIE</span>
+        Kolonie są regularnie atakowane przez Raidersów i Ghoulem.<br>
+        Częstotliwość ataków rośnie z liczbą kolonii w sieci.<br>
+        Słaba obrona = utrata zasobów i niezadowoleni osadnicy.<br>
+        Rozwiązanie: zawsze utrzymuj obronę > woda + jedzenie.
+      </div>
+
+      <div class="tip-box warn">
+        <span class="label">ZARZĄDZANIE ZAJMUJE CZAS</span>
+        Każda kolonia wymaga regularnej uwagi:<br>
+        - Zbieranie kapsli i wody z workbenchy<br>
+        - Naprawianie obrony po atakach<br>
+        - Przypisywanie nowych osadników do zadań<br>
+        Im więcej kolonii, tym więcej czasu na zarządzanie.
+      </div>
+
+      <div class="tip-box warn">
+        <span class="label">LIMIT OSADNIKÓW</span>
+        Każda kolonia ma limit = 10 + Charyzma bohatera.<br>
+        Przy Charyzma 6 = max 16 osadników na kolonię.<br>
+        Bez inwestycji w Charyzmę kolonie nie rosną szybko.
+      </div>
+
+      <div class="tip-box warn">
+        <span class="label">MATERIAŁY DO BUDOWY</span>
+        Rozbudowa kolonii wymaga dużo stali, drewna i betonu.<br>
+        Na początku gry materiały są ograniczone —<br>
+        rozkładaj wszystkie śmieci które znajdziesz (złomuj w workbenchu).<br>
+        Perk Scrapper rank 2 znacznie przyspiesza zbieranie materiałów.
+      </div>
+
+      <div class="tip-box danger">
+        <span class="label">BŁĘDY I BUGI</span>
+        System kolonii jest jedną z najbardziej zabugowanych części F4:<br>
+        - Osadnicy czasem nie wracają do przypisanych zadań<br>
+        - Linie zaopatrzenia mogą się rozłączać po załadowaniu gry<br>
+        - Ataki na kolonie mogą nie wyzwalać się poprawnie<br>
+        Rozwiązanie: zapisuj regularnie i sprawdzaj kolonie co kilka godzin gry.
+      </div>
+
+      <h2>// CZY WARTO INWESTOWAĆ?</h2>
+
+      <div class="tip-box">
+        <span class="label">WARTO JEŚLI</span>
+        <ul class="checklist">
+          <li>Grasz jako Minuteman — kolonie to rdzeń tej frakcji</li>
+          <li>Lubisz budowanie i zarządzanie zasobami</li>
+          <li>Chcesz pasywny dochód kapsli i wody</li>
+          <li>Grasz w trybie Survival — kolonie jako sieć checkpointów</li>
+        </ul>
+      </div>
+
+      <div class="tip-box warn">
+        <span class="label">MOŻESZ POMINĄĆ JEŚLI</span>
+        <ul class="checklist">
+          <li>Skupiasz się wyłącznie na fabule głównego wątku</li>
+          <li>Wybrałeś Instytut lub Bractwo jako frakcję końcową</li>
+          <li>Nie lubisz micro-managementu</li>
+        </ul>
+      </div>
+
+      <div class="tip-box">
+        <span class="label">MINIMALNE INWESTYCJE — MAKSYMALNY EFEKT</span>
+        Jeśli nie chcesz głęboko zarządzać koloniami,<br>
+        wystarczy zrobić tylko to:<br>
+        1. Rozbuduj Sanctuary Hills jako jedyną bazę<br>
+        2. Postaw 2-3 sklepy Tier 3 (Local Leader rank 2)<br>
+        3. Ustaw obronę > 100<br>
+        4. Zapomnij o pozostałych koloniach<br>
+        To daje 80% benefitów przy 20% wysiłku.
       </div>
     </div>
 
