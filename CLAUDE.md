@@ -11,6 +11,7 @@ pustkowiak/
 ├── frakcje.html            # Poradnik do frakcji
 ├── kompani.html            # Poradnik do kompanów
 ├── chemy.html              # Poradnik do chem
+├── jedzenie.html           # Poradnik do gotowania
 ├── CLAUDE.md               # Ten plik
 └── design.md               # System wizualny
 ```

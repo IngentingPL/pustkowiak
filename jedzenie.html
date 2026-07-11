@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JEDZENIE — COMMONWEALTH</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap');
+
+  :root {
+    --green: #5eff6a;
+    --green-dim: #2a7a30;
+    --green-dark: #0d1f0f;
+    --amber: #f5b942;
+    --red: #ff4f4f;
+    --bg: #0a1a0b;
+    --scanline: rgba(0,0,0,0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    font-family: 'Share Tech Mono', monospace;
+    padding: 24px 12px;
+  }
+
+  .pipboy {
+    background: var(--bg);
+    border: 3px solid var(--green-dim);
+    border-radius: 12px;
+    max-width: 680px;
+    width: 100%;
+    box-shadow: 0 0 40px #1aff3033, 0 0 120px #0a2010;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* CRT scanlines overlay */
+  .pipboy::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 3px,
+      var(--scanline) 3px,
+      var(--scanline) 4px
+    );
+    pointer-events: none;
+    z-index: 10;
+    border-radius: 12px;
+  }
+
+  /* CRT glow vignette */
+  .pipboy::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 60%, #000a 100%);
+    pointer-events: none;
+    z-index: 11;
+    border-radius: 12px;
+  }
+
+  .site-nav {
+    background: #040f05;
+    border-bottom: 1px solid var(--green-dim);
+    display: flex;
+    gap: 20px;
+    padding: 8px 24px;
+  }
+
+  .site-nav a {
+    color: var(--green-dim);
+    text-decoration: none;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    transition: all 0.15s;
+  }
+
+  .site-nav a:hover {
+    color: var(--green);
+  }
+
+  .site-nav a.active {
+    color: var(--green);
+    text-shadow: 0 0 8px var(--green);
+  }
+
+  header {
+    background: #040f05;
+    border-bottom: 2px solid var(--green-dim);
+    padding: 16px 24px 10px;
+  }
+
+  .pip-logo {
+    font-family: 'VT323', monospace;
+    font-size: 2.2rem;
+    color: var(--green);
+    text-shadow: 0 0 12px var(--green);
+    letter-spacing: 4px;
+  }
+
+  .pip-sub {
+    font-size: 0.7rem;
+    color: var(--green-dim);
+    letter-spacing: 3px;
+    margin-top: 2px;
+  }
+
+  .stat-bar {
+    display: flex;
+    gap: 20px;
+    padding: 8px 24px;
+    background: #050e06;
+    border-bottom: 1px solid #1a3d1a;
+    font-size: 0.72rem;
+    color: var(--green-dim);
+  }
+
+  .stat-bar span { color: var(--green); }
+
+  nav {
+    display: flex;
+    border-bottom: 2px solid var(--green-dim);
+    background: #040f05;
+  }
+
+  nav button {
+    flex: 1;
+    background: none;
+    border: none;
+    border-right: 1px solid var(--green-dim);
+    color: var(--green-dim);
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    padding: 10px 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  nav button:last-child { border-right: none; }
+
+  nav button.active,
+  nav button:hover {
+    background: #0e2e10;
+    color: var(--green);
+    text-shadow: 0 0 8px var(--green);
+  }
+
+  .content {
+    padding: 20px 24px 28px;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  h2 {
+    font-family: 'VT323', monospace;
+    font-size: 1.6rem;
+    color: var(--green);
+    text-shadow: 0 0 8px var(--green);
+    letter-spacing: 3px;
+    border-bottom: 1px solid var(--green-dim);
+    padding-bottom: 6px;
+    margin-bottom: 16px;
+  }
+
+  .tip-box {
+    background: #071509;
+    border: 1px solid var(--green-dim);
+    border-left: 4px solid var(--green);
+    border-radius: 4px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    font-size: 0.82rem;
+    color: #a8e8aa;
+    line-height: 1.7;
+  }
+
+  .tip-box .label {
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    color: var(--green);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .warn {
+    border-left-color: var(--amber);
+    color: #f5d898;
+  }
+  .warn .label { color: var(--amber); }
+
+  .danger {
+    border-left-color: var(--red);
+    color: #ffaaaa;
+  }
+  .danger .label { color: var(--red); }
+
+  .resource-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .res-card {
+    background: #071509;
+    border: 1px solid var(--green-dim);
+    border-radius: 4px;
+    padding: 10px 12px;
+  }
+
+  .res-card .res-name {
+    font-family: 'VT323', monospace;
+    font-size: 1.05rem;
+    color: var(--green);
+    letter-spacing: 2px;
+  }
+
+  .res-card .res-formula {
+    font-size: 0.75rem;
+    color: #6abf6e;
+    margin-top: 3px;
+  }
+
+  .checklist { list-style: none; }
+  .checklist li {
+    font-size: 0.81rem;
+    color: #a8e8aa;
+    line-height: 1.8;
+    padding-left: 16px;
+    position: relative;
+  }
+  .checklist li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+  }
+
+  .priority-list { list-style: none; counter-reset: prio; }
+  .priority-list li {
+    counter-increment: prio;
+    font-size: 0.81rem;
+    color: #a8e8aa;
+    line-height: 1.8;
+    padding-left: 24px;
+    position: relative;
+  }
+  .priority-list li::before {
+    content: '[' counter(prio) ']';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-size: 0.78rem;
+  }
+
+  .blink {
+    animation: blink 1.1s step-end infinite;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1em;
+    background: var(--green);
+    vertical-align: text-bottom;
+    margin-left: 2px;
+    animation: blink 0.9s step-end infinite;
+  }
+
+  /* Table styles */
+  .table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 16px;
+  }
+
+  .recipe-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--green-dark);
+    font-size: 0.78rem;
+    min-width: 500px;
+  }
+
+  .recipe-table th {
+    background: #040f05;
+    color: var(--green);
+    font-family: 'VT323', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    padding: 10px 14px;
+    text-align: left;
+    border: 1px solid var(--green-dim);
+    border-bottom: 2px solid var(--green-dim);
+  }
+
+  .recipe-table td {
+    padding: 10px 14px;
+    border: 1px solid var(--green-dim);
+    text-align: left;
+  }
+
+  .recipe-table tr:nth-child(even) {
+    background: #071509;
+  }
+
+  .recipe-table tr:nth-child(odd) {
+    background: #0a1a0b;
+  }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--green-dark);
+    font-size: 0.78rem;
+    min-width: 400px;
+  }
+
+  .compare-table th {
+    background: #040f05;
+    color: var(--green);
+    font-family: 'VT323', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    padding: 10px 14px;
+    text-align: left;
+    border: 1px solid var(--green-dim);
+    border-bottom: 2px solid var(--green-dim);
+  }
+
+  .compare-table td {
+    padding: 10px 14px;
+    border: 1px solid var(--green-dim);
+    text-align: left;
+  }
+
+  .compare-table tr:nth-child(even) {
+    background: #071509;
+  }
+
+  .compare-table tr:nth-child(odd) {
+    background: #0a1a0b;
+  }
+
+  .compare-table td:first-child {
+    font-family: 'VT323', monospace;
+    color: var(--green);
+  }
+
+  footer {
+    border-top: 1px solid var(--green-dim);
+    background: #040f05;
+    padding: 8px 24px;
+    font-size: 0.65rem;
+    color: var(--green-dim);
+    letter-spacing: 2px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* Tablet styles (601px–1024px) */
+  @media (min-width: 601px) and (max-width: 1024px) {
+    .pipboy {
+      max-width: 860px;
+    }
+
+    .resource-grid {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    nav button {
+      font-size: 1.2rem;
+    }
+  }
+
+  /* Desktop and ultrawide (1025px+) */
+  @media (min-width: 1025px) {
+    .pipboy {
+      max-width: 1400px;
+      width: 95vw;
+    }
+
+    .pipboy-body {
+      display: flex;
+    }
+
+    .pipboy-nav {
+      width: 200px;
+      flex-shrink: 0;
+      border-right: 2px solid var(--green-dim);
+      border-bottom: none;
+    }
+
+    .pipboy-nav nav {
+      flex-direction: column;
+      border-bottom: none;
+      border-right: none;
+    }
+
+    .pipboy-nav nav button {
+      border-right: none;
+      border-bottom: 1px solid var(--green-dim);
+      text-align: left;
+      padding: 14px 20px;
+      flex: none;
+    }
+
+    .pipboy-nav nav button:last-child {
+      border-bottom: none;
+    }
+
+    .pipboy-main {
+      flex: 1;
+    }
+
+    .content {
+      padding: 28px 36px;
+    }
+
+    .resource-grid {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .pip-logo {
+      font-size: 3rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    .tip-box {
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Phone styles (max 600px) */
+  @media (max-width: 600px) {
+    .pipboy {
+      max-width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="pipboy">
+  <div class="site-nav">
+    <a href="fallout4-kolonie.html">⚙ KOLONIE</a>
+    <a href="frakcje.html">⚔ FRAKCJE</a>
+    <a href="kompani.html">👥 KOMPANI</a>
+    <a href="chemy.html">💊 CHEMY</a>
+    <a href="jedzenie.html" class="active">🍖 JEDZENIE</a>
+  </div>
+
+  <header>
+    <div class="pip-logo">PIP-BOY 3000 MK IV</div>
+    <div class="pip-sub">MODUŁ: GOTOWANIE I ŻYWNOŚĆ // COMMONWEALTH</div>
+  </header>
+
+  <div class="stat-bar">
+    WERSJA: <span>1.0</span> &nbsp;|&nbsp;
+    REGION: <span>COMMONWEALTH</span> &nbsp;|&nbsp;
+    STATUS: <span>AKTYWNY<span class="cursor"></span></span>
+  </div>
+
+  <div class="pipboy-body">
+    <div class="pipboy-nav">
+      <nav>
+        <button class="active" onclick="show('przeglad', this)">PRZEGLĄD</button>
+        <button onclick="show('przepisy', this)">PRZEPISY</button>
+        <button onclick="show('skladniki', this)">SKŁADNIKI</button>
+        <button onclick="show('perki', this)">PERKI</button>
+        <button onclick="show('vschemy', this)">VS CHEMY</button>
+      </nav>
+    </div>
+
+    <div class="pipboy-main">
+      <div class="content">
+
+    <!-- PRZEGLĄD -->
+    <div class="section active" id="przeglad">
+      <h2>// SYSTEM GOTOWANIA</h2>
+
+      <div class="tip-box">
+        <span class="label">JAK DZIAŁA GOTOWANIE</span>
+        Ognisko kuchenne (Cooking Station) znajdziesz przy większości
+        obozowisk i możesz je zbudować w każdej kolonii.
+        Gotowanie surowego mięsa i roślin eliminuje radiację i ryzyko
+        chorób — zawsze gotuj zamiast jeść na surowo.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">BONUSY DO STATYSTYK</span>
+        Ugotowane posiłki mogą dawać tymczasowe bonusy do statystyk SPECIAL.
+        W przeciwieństwie do chemów — jedzenie nie uzależnia i można
+        łączyć z chemami bez negatywnych efektów.
+      </div>
+
+      <div class="tip-box warn">
+        <span class="label">WAŻNA ZASADA</span>
+        Nie możesz mieć aktywnych dwóch bonusów do tej samej statystyki
+        z jedzenia naraz. Nowy posiłek zastępuje poprzedni bonus.
+      </div>
+
+      <h2>// KATEGORIE POSIŁKÓW</h2>
+
+      <div class="resource-grid">
+        <div class="res-card">
+          <div class="res-name">🩺 LECZENIE</div>
+          <div class="res-formula">Przywraca HP i usuwa radiację</div>
+        </div>
+        <div class="res-card">
+          <div class="res-name">⚔️ BOJOWE</div>
+          <div class="res-formula">Bonusy do siły, wytrzymałości i obrażeń</div>
+        </div>
+        <div class="res-card">
+          <div class="res-name">🎯 ZWIADOWCZE</div>
+          <div class="res-formula">Bonusy do percepcji i zwinności</div>
+        </div>
+        <div class="res-card">
+          <div class="res-name">💬 SPOŁECZNE</div>
+          <div class="res-formula">Bonusy do charyzmy i inteligencji</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRZEPISY -->
+    <div class="section" id="przepisy">
+      <h2>// PRZEPISY</h2>
+
+      <div class="tip-box">
+        <span class="label">TIER 1: NAJLEPSZE PRZEPISY</span>
+        Te posiłki dają najlepsze efekty — warto je przygotowywać regularnie.
+      </div>
+
+      <div class="table-wrapper">
+        <table class="recipe-table">
+          <thead>
+            <tr>
+              <th>POSIŁEK</th>
+              <th>SKŁADNIKI</th>
+              <th>EFEKT</th>
+              <th>CZAS TRWANIA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Radscorpion Egg Omelette</td>
+              <td>Jajo Radscorpiona x1 + Tato x1</td>
+              <td>+2 END, +2 STR, leczy HP i rad</td>
+              <td>60 min</td>
+            </tr>
+            <tr>
+              <td>Deathclaw Wellington</td>
+              <td>Mięso Deathclaw x1 + Tato x1 + Jajko x1</td>
+              <td>Najlepsze leczenie HP w grze, +2 END</td>
+              <td>30 min</td>
+            </tr>
+            <tr>
+              <td>Brahmin Steak</td>
+              <td>Mięso Brahmin x1</td>
+              <td>+25 HP, +2 STR, zero radiacji</td>
+              <td>30 min</td>
+            </tr>
+            <tr>
+              <td>Squirrel Stew</td>
+              <td>Mięso wiewiórki x1 + Woda x1 + Tato x1</td>
+              <td>+2 AGI, +2 PER</td>
+              <td>60 min</td>
+            </tr>
+            <tr>
+              <td>Mirelurk Cake</td>
+              <td>Mięso Mirelurk x1 + Jajko x1</td>
+              <td>+2 AGI, świetne dla snajperów</td>
+              <td>30 min</td>
+            </tr>
+            <tr>
+              <td>Yao Guai Roast</td>
+              <td>Mięso Yao Guai x1 + Mentats x1</td>
+              <td>+2 STR, +2 END, +25% obrażeń</td>
+              <td>30 min</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tip-box warn">
+        <span class="label">TIER 2: CODZIENNE PRZEPISY</span>
+        Prostsze do wykonania, dobre na codzienne użytkowanie.
+      </div>
+
+      <div class="table-wrapper">
+        <table class="recipe-table">
+          <thead>
+            <tr>
+              <th>POSIŁEK</th>
+              <th>SKŁADNIKI</th>
+              <th>EFEKT</th>
+              <th>CZAS TRWANIA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Instamash</td>
+              <td>Tato x2</td>
+              <td>+25 HP, zero radiacji, tanie</td>
+              <td>15 min</td>
+            </tr>
+            <tr>
+              <td>Noodle Cup</td>
+              <td>Tato x1 + Woda x1</td>
+              <td>Tanie, przyzwoite leczenie</td>
+              <td>15 min</td>
+            </tr>
+            <tr>
+              <td>Radstag Stew</td>
+              <td>Mięso Radstag x1 + Woda x1 + Tato x1</td>
+              <td>+2 END, +2 AGL</td>
+              <td>60 min</td>
+            </tr>
+            <tr>
+              <td>Mirelurk Egg Omelette</td>
+              <td>Jajko Mirelurk x2 + Tato x1</td>
+              <td>+2 PER, leczy HP</td>
+              <td>30 min</td>
+            </tr>
+            <tr>
+              <td>Molerat Chunks</td>
+              <td>Mięso Molerat x1</td>
+              <td>Podstawowe leczenie HP</td>
+              <td>15 min</td>
+            </tr>
+            <tr>
+              <td>Softshell Mirelurk Meat</td>
+              <td>Mięso Mirelurk x1</td>
+              <td>+2 END, tanie w pozyskaniu</td>
+              <td>15 min</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tip-box danger">
+        <span class="label">UNIKAJ</span>
+        Surowe mięso i brudna woda — ryzyko radiacji i chorób.
+        Nigdy nie jedz Bloatfly Meat na surowo — wysoka radiacja.
+      </div>
+    </div>
+
+    <!-- SKŁADNIKI -->
+    <div class="section" id="skladniki">
+      <h2>// SKŁADNIKI</h2>
+
+      <div class="tip-box">
+        <span class="label">MIĘSO: GDZIE SZUKAĆ</span>
+        Źródła mięsa i najlepsze sposoby pozyskiwania.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">BRAHMIN 🐄</span>
+        <strong>Gdzie:</strong> farmy kolonii, Abernathy Farm, Finch Farm<br>
+        <strong>Daje:</strong> Brahmin Steak (najłatwiejsze mięso w grze)<br>
+        <strong>Tip:</strong> wybuduj Brahmin w kolonii = darmowe mięso co kilka dni
+      </div>
+
+      <div class="tip-box">
+        <span class="label">RADSCORPION 🦂</span>
+        <strong>Gdzie:</strong> Glowing Sea, Quincy Ruins, Starlight Drive-In<br>
+        <strong>Daje:</strong> Radscorpion Egg Omelette (Tier 1!)<br>
+        <strong>Tip:</strong> trudny wróg ale nagroda warta zachodu
+      </div>
+
+      <div class="tip-box">
+        <span class="label">DEATHCLAW 🦎</span>
+        <strong>Gdzie:</strong> Museum of Witchcraft, Federal Ration Stockpile, Concord<br>
+        <strong>Daje:</strong> Deathclaw Wellington (najlepsze leczenie HP)<br>
+        <strong>Tip:</strong> najtrudniejszy wróg — na deathclawa dopiero po level 20+
+      </div>
+
+      <div class="tip-box">
+        <span class="label">YAO GUAI 🐻</span>
+        <strong>Gdzie:</strong> lasy na zachodzie mapy, Nahant<br>
+        <strong>Daje:</strong> Yao Guai Roast — +25% obrażeń (unikalne!)<br>
+        <strong>Tip:</strong> poluj nocą — więcej spawów w lasach
+      </div>
+
+      <div class="tip-box">
+        <span class="label">MIRELURK 🦀</span>
+        <strong>Gdzie:</strong> wybrzeże, Spectacle Island, Castle<br>
+        <strong>Daje:</strong> Mirelurk Cake, Mirelurk Egg Omelette<br>
+        <strong>Tip:</strong> przy The Castle znajdziesz ich zawsze
+      </div>
+
+      <div class="tip-box">
+        <span class="label">ROŚLINY: CO UPRAWIAĆ W KOLONII</span>
+        Wszystkie rośliny możesz uprawiać w koloniach.
+        Priorytet upraw dla gotowania:
+      </div>
+
+      <ul class="priority-list">
+        <li>Tato — składnik prawie każdego przepisu, podstawa</li>
+        <li>Mutfruct — najwyższe jedzenie na roślinę (1.0), do Instamash</li>
+        <li>Razorgrain — do Noodle Cup i piwa</li>
+        <li>Corn (Kukurydza) — do Instamash</li>
+        <li>Gourd (Dynia) — Radscorpion Omelette i inne</li>
+      </ul>
+
+      <div class="tip-box warn">
+        <span class="label">WODA DO GOTOWANIA</span>
+        Czysta woda = bez radiacji w przepisach.
+        Oczyszczacz w kolonii produkuje czystą wodę automatycznie —
+        zbieraj z workbencha co kilka dni gry.
+      </div>
+    </div>
+
+    <!-- PERKI -->
+    <div class="section" id="perki">
+      <h2>// PERKI DO GOTOWANIA</h2>
+
+      <div class="tip-box">
+        <span class="label">KLUCZOWE PERKI DO GOTOWANIA</span>
+        Perki które zwiększają efektywność gotowania i jedzenia.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">CANNIBALISM (Strength 9)</span>
+        Możesz jeść ciała ludzkich wrogów po walce.
+        Przywraca HP — kontrowersyjne ale skuteczne w trybie Survival.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">LEAD BELLY (Endurance 2)</span>
+        Rank 3: jedzenie i picie nie daje radiacji w ogóle.
+        Możesz jeść surowe mięso bez konsekwencji. Kluczowy w Survival.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">GOURMAND (Endurance 6)</span>
+        Rank 1: jedzenie przywraca +25% więcej HP<br>
+        Rank 2: jedzenie przywraca +50% więcej HP<br>
+        Najlepszy perk do gotowania — wszystkie przepisy stają się silniejsze.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">CHEMIST (Intelligence 7)</span>
+        Głównie do chemów, ale rank 3+ wydłuża czas działania
+        gotowanych posiłków z bonusami do statystyk.
+      </div>
+
+      <div class="tip-box">
+        <span class="label">SCRAPPER (Intelligence 5)</span>
+        Nie wpływa na gotowanie, ale pozwala odzyskiwać składniki
+        z broni — pośrednio pomaga w zaopatrzeniu kolonii.
+      </div>
+
+      <div class="tip-box warn">
+        <span class="label">NAJLEPSZA KOMBINACJA</span>
+        Gourmand rank 2 + Deathclaw Wellington =
+        najlepsze leczenie HP w grze bez chemów.
+        Dodaj Medic rank 2 jeśli używasz też Stimpaków.
+      </div>
+    </div>
+
+    <!-- VS CHEMY -->
+    <div class="section" id="vschemy">
+      <h2>// JEDZENIE VS CHEMY</h2>
+
+      <div class="tip-box">
+        <span class="label">KIEDY UŻYWAĆ JEDZENIA</span>
+        <ul class="checklist">
+          <li>Codzienne leczenie HP między walkami</li>
+          <li>Długotrwałe bonusy do statystyk (60 min vs 5 min dla chemów)</li>
+          <li>Brak ryzyka uzależnienia</li>
+          <li>Tanie w produkcji — składniki z kolonii</li>
+          <li>Można łączyć z chemami bez negatywnych efektów</li>
+        </ul>
+      </div>
+
+      <div class="tip-box warn">
+        <span class="label">KIEDY UŻYWAĆ CHEMÓW</span>
+        <ul class="checklist">
+          <li>Trudne walki i bossowie — natychmiastowy silny bonus</li>
+          <li>VATS i Jet — chemy dają efekty których jedzenie nie ma</li>
+          <li>Sytuacje kryzysowe — Stimpak szybszy niż jedzenie</li>
+          <li>Krótkie, intensywne starcia gdzie długi czas trwania nie ma znaczenia</li>
+        </ul>
+      </div>
+
+      <h2>// PORÓWNANIE</h2>
+
+      <div class="table-wrapper">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>CECHA</th>
+              <th>JEDZENIE</th>
+              <th>CHEMY</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Czas trwania bonusu</td>
+              <td>15–60 min</td>
+              <td>3–10 min</td>
+            </tr>
+            <tr>
+              <td>Ryzyko uzależnienia</td>
+              <td>Brak</td>
+              <td>8–20%</td>
+            </tr>
+            <tr>
+              <td>Siła bonusu</td>
+              <td>Umiarkowana</td>
+              <td>Silna</td>
+            </tr>
+            <tr>
+              <td>Koszt produkcji</td>
+              <td>Niski</td>
+              <td>Średni-wysoki</td>
+            </tr>
+            <tr>
+              <td>Łączenie efektów</td>
+              <td>Tak (z chemami)</td>
+              <td>Tak (z jedzeniem)</td>
+            </tr>
+            <tr>
+              <td>Leczenie HP</td>
+              <td>Wolne</td>
+              <td>Natychmiastowe</td>
+            </tr>
+            <tr>
+              <td>Dostępność</td>
+              <td>Kolonie i polowanie</td>
+              <td>Sklepy i crafting</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tip-box">
+        <span class="label">OPTYMALNA STRATEGIA</span>
+        Jedzenie = pasywne zarządzanie statystykami i leczenie między walkami.
+        Chemy = aktywne wzmocnienie w trudnych momentach.
+        Nie traktuj ich jako alternatyw — używaj obu razem.
+      </div>
+
+      <div class="tip-box danger">
+        <span class="label">NAJGORSZA STRATEGIA</span>
+        Poleganie wyłącznie na Stimpakach bez gotowania.
+        Stimpaki są drogie i trudniej dostępne niż składniki do jedzenia.
+        Gotowanie z kolonii = prawie darmowe leczenie przez całą grę.
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>ROBCO INDUSTRIES™</span>
+    <span>PIP-BOY OS v7.1.0.8</span>
+    <span>VAULT-TEC CORP.</span>
+  </footer>
+</div>
+
+<script>
+  function show(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
